@@ -79,7 +79,7 @@ export default function ScreenshotWall({ user }) {
 
       await addDoc(collection(db, "screenshotSubmissions"), {
         uid: user.uid,
-        email: user.email,
+        
         tournamentId,
         tournamentTitle: tournament.title,
         matchLabel: matchLabel.trim(),
