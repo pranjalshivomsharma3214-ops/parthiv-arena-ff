@@ -1,6 +1,7 @@
 import "./Admin.css";
 import CreateTournament from "./CreateTournament";
 import CreateMatchRoom from "./CreateMatchRoom";
+import ScreenshotReview from "./ScreenshotReview";
 function Admin({ user }) {
   return (
     <main className="admin-shell">
@@ -52,6 +53,7 @@ function Admin({ user }) {
 
 <CreateMatchRoom user={user} />
 
+<ScreenshotReview user={user} />
     </main>
   );
 }
