@@ -1,0 +1,125 @@
+
+.create-tournament-page {
+  margin-top: 35px;
+  padding: 30px;
+  border: 1px solid #30223e;
+  border-radius: 18px;
+  background: #111019;
+}
+
+.create-tournament-heading {
+  margin-bottom: 28px;
+}
+
+.create-tournament-heading h1 {
+  margin: 10px 0;
+  font-size: 32px;
+  color: #f5f3ff;
+}
+
+.create-tournament-heading h1 span {
+  color: #a970ff;
+}
+
+.create-tournament-heading > p:last-child {
+  color: #a39bad;
+  font-size: 14px;
+}
+
+.tournament-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.form-field label {
+  color: #d8cce7;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #383044;
+  border-radius: 9px;
+  outline: none;
+  background: #191622;
+  color: #f5f3ff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #a970ff;
+}
+
+.form-field input:disabled {
+  color: #a970ff;
+  opacity: 1;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.create-tournament-message {
+  padding: 13px;
+  border-radius: 8px;
+  background: #241833;
+  color: #d7b8ff;
+  font-size: 14px;
+}
+
+.create-tournament-button {
+  padding: 16px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(100deg, #7135bb, #a34ce8);
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.create-tournament-button:hover {
+  opacity: 0.85;
+}
+
+.create-tournament-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 650px) {
+  .create-tournament-page {
+    padding: 20px 15px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .create-tournament-heading h1 {
+    font-size: 26px;
+  }
+}

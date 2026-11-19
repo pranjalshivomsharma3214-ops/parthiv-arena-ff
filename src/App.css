@@ -1,0 +1,357 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Inter', Arial, sans-serif;
+  color: #ffffff;
+  background: #090711;
+  font-synthesis: none;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 15% 45%, #32145155, transparent 45%),
+    radial-gradient(ellipse at 85% 15%, #541e7950, transparent 40%),
+    #090711;
+}
+
+.topbar {
+  height: 82px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 18px;
+}
+
+.brand b {
+  color: #bc83ff;
+}
+
+.brand-mark {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #c084fc, #7028c7);
+  box-shadow: 0 5px 25px #9b46e855;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.community-label {
+  font-size: 10px;
+  color: #c9a4f7;
+  letter-spacing: 2px;
+}
+
+.auth-layout {
+  max-width: 1250px;
+  margin: auto;
+  min-height: calc(100vh - 150px);
+  padding: 65px 35px;
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  align-items: center;
+  gap: 80px;
+}
+
+.eyebrow {
+  color: #c084fc;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+}
+
+.intro h1 {
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -2.5px;
+}
+
+.intro h1 span {
+  color: #bd82ff;
+  text-shadow: 0 0 35px #a855f744;
+}
+
+.intro-text {
+  max-width: 460px;
+  color: #aaa4b7;
+  line-height: 1.9;
+  margin-top: 25px;
+  font-size: 15px;
+}
+
+.feature-list {
+  margin-top: 38px;
+  display: grid;
+  gap: 17px;
+  color: #d7cde4;
+  font-size: 13px;
+}
+
+.auth-card {
+  padding: 36px;
+  border: 1px solid #ffffff1b;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #1b1426ed, #100d18f5);
+  box-shadow: 0 25px 90px #00000066;
+  backdrop-filter: blur(15px);
+}
+
+.card-heading h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.card-heading > p:last-child {
+  color: #a9a1b5;
+  font-size: 13px;
+}
+
+.mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #090711;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 27px 0;
+}
+
+.mode-switch button {
+  background: transparent;
+  border: none;
+  color: #8d859a;
+  padding: 12px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.mode-switch button.active {
+  background: #8b3bd2;
+  color: white;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card label {
+  color: #e0d8e9;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 15px;
+  background: #0c0912;
+  border: 1px solid #ffffff1b;
+  border-radius: 9px;
+  color: white;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.auth-card input:focus {
+  border-color: #b56aff;
+  box-shadow: 0 0 0 3px #a855f722;
+}
+
+.auth-card input::placeholder {
+  color: #6f687c;
+}
+
+.forgot-button {
+  align-self: flex-end;
+  border: none;
+  background: transparent;
+  color: #c18aff;
+  font-size: 11px;
+  margin-top: -9px;
+  margin-bottom: 22px;
+}
+
+.main-button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 9px;
+  color: white;
+  background: linear-gradient(110deg, #a94cf0, #7024c9);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 28px #862ddc44;
+  transition: 0.2s;
+}
+
+.main-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+.main-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.status-message {
+  color: #d6b2ff;
+  background: #a855f71a;
+  border: 1px solid #a855f733;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  margin-bottom: 18px;
+  overflow-wrap: anywhere;
+}
+
+.secure-note {
+  color: #777083;
+  font-size: 10px;
+  text-align: center;
+  margin-top: 22px;
+}
+
+.welcome-card {
+  width: min(520px, calc(100% - 36px));
+  margin: 100px auto;
+  text-align: center;
+  padding: 45px 30px;
+  background: #171021;
+  border: 1px solid #ffffff20;
+  border-radius: 20px;
+  box-shadow: 0 20px 80px #00000066;
+}
+
+.welcome-card .brand-mark {
+  margin: 0 auto 28px;
+}
+
+.welcome-card h1 {
+  font-size: 27px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.welcome-card h1 span {
+  color: #c084fc;
+}
+
+.welcome-card > p {
+  color: #aaa4b7;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.welcome-card .user-email {
+  color: #d6aaff;
+}
+
+.welcome-card .main-button {
+  margin-top: 15px;
+}
+
+.footer {
+  text-align: center;
+  border-top: 1px solid #ffffff12;
+  color: #777083;
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 22px;
+}
+
+@media (max-width: 900px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    max-width: 600px;
+  }
+
+  .intro {
+    text-align: center;
+  }
+
+  .intro-text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feature-list {
+    text-align: left;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .topbar {
+    height: 70px;
+    padding: 0 18px;
+  }
+
+  .brand {
+    font-size: 14px;
+  }
+
+  .community-label {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .auth-layout {
+    padding: 45px 18px;
+  }
+
+  .intro h1 {
+    font-size: 39px;
+    letter-spacing: -1.5px;
+  }
+
+  .auth-card {
+    padding: 25px 20px;
+  }
+
+  .card-heading h2 {
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,124 @@
+
+.admin-shell {
+  min-height: 100vh;
+  padding: 35px;
+  color: #f5f3ff;
+  background:
+    radial-gradient(ellipse at 80% 0%, #32145a 0%, transparent 38%),
+    #09090f;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #292333;
+}
+
+.admin-header p,
+.admin-welcome > p:first-child {
+  color: #a970ff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.admin-header h1 {
+  margin: 10px 0;
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.admin-header h1 span {
+  color: #a970ff;
+}
+
+.admin-header small {
+  color: #9992a8;
+}
+
+.admin-status {
+  padding: 11px 16px;
+  border: 1px solid #7943b8;
+  border-radius: 8px;
+  color: #c9a6ff;
+  background: #241333;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.admin-welcome {
+  margin: 32px 0;
+  padding: 35px;
+  border: 1px solid #3a2452;
+  border-radius: 18px;
+  background: linear-gradient(120deg, #21132f, #11101a);
+}
+
+.admin-welcome h2 {
+  margin: 12px 0;
+  font-size: clamp(25px, 4vw, 38px);
+}
+
+.admin-welcome > p:last-child {
+  color: #aaa2b7;
+  line-height: 1.7;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.admin-card {
+  padding: 25px;
+  border: 1px solid #292333;
+  border-radius: 15px;
+  background: #12111a;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.admin-card:hover {
+  transform: translateY(-3px);
+  border-color: #9252d7;
+}
+
+.admin-card > span {
+  color: #a970ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.admin-card h3 {
+  margin: 18px 0 9px;
+  font-size: 20px;
+}
+
+.admin-card p {
+  margin: 0;
+  color: #9992a8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+  .admin-shell {
+    padding: 20px 15px;
+  }
+
+  .admin-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-welcome {
+    padding: 24px 20px;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
