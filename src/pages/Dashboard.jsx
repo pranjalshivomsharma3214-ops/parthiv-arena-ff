@@ -7,24 +7,25 @@ import { auth, db } from "../services/firebase";
 import Tournaments from "./Tournaments";
 import Admin from "./Admin";
 import MatchRoom from "./MatchRoom";
+import ScreenshotWall from "./screenshotWall";
 import "./Dashboard.css";
+
 function Dashboard({ user }) {
   const [profile, setProfile] = useState(null);
   const [activeTab, setActiveTab] = useState("Overview");
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  
-    
-const menuItems = [
-  "Overview",
-  "Tournaments",
-  "My Matches",
-  "Leaderboard",
-  "Announcements",
-  "Settings",
-  ...(isAdmin ? ["Admin"] : [])
-];
 
+  const menuItems = [
+    "Overview",
+    "Tournaments",
+    "My Matches",
+    "Screenshot Wall",
+    "Leaderboard",
+    "Announcements",
+    "Settings",
+    ...(isAdmin ? ["Admin"] : [])
+  ];
 
   useEffect(() => {
     async function loadProfile() {
@@ -45,28 +46,28 @@ const menuItems = [
     loadProfile();
   }, [user.uid]);
 
-useEffect(() => {
-  async function checkAdmin() {
-    try {
-      const adminRef = doc(db, "adminUsers", user.uid);
-      const adminSnap = await getDoc(adminRef);
+  useEffect(() => {
+    async function checkAdmin() {
+      try {
+        const adminRef = doc(db, "adminUsers", user.uid);
+        const adminSnap = await getDoc(adminRef);
 
-      if (adminSnap.exists()) {
-        const adminData = adminSnap.data();
+        if (adminSnap.exists()) {
+          const adminData = adminSnap.data();
 
-        setIsAdmin(
-          adminData.role === "owner" &&
-          adminData.active === true
-        );
+          setIsAdmin(
+            adminData.role === "owner" &&
+            adminData.active === true
+          );
+        }
+      } catch (error) {
+        console.error("Admin verification error:", error);
+        setIsAdmin(false);
       }
-    } catch (error) {
-      console.error("Admin verification error:", error);
-      setIsAdmin(false);
     }
-  }
 
-  checkAdmin();
-}, [user.uid]);
+    checkAdmin();
+  }, [user.uid]);
 
   const username = profile?.username || "Player";
 
@@ -85,14 +86,21 @@ useEffect(() => {
           {menuItems.map((item) => (
             <button
               key={item}
-              className={activeTab === item ? "nav-item active" : "nav-item"}
+              className={
+                activeTab === item
+                  ? "nav-item active"
+                  : "nav-item"
+              }
               onClick={() => setActiveTab(item)}
             >
               {item === "Overview" ? "⌂" :
                item === "Tournaments" ? "♜" :
                item === "My Matches" ? "⚔" :
+               item === "Screenshot Wall" ? "▣" :
                item === "Leaderboard" ? "♛" :
-               item === "Announcements" ? "◈" : "⚙"}
+               item === "Announcements" ? "◈" :
+               item === "Admin" ? "♙" : "⚙"}
+
               <span>{item}</span>
             </button>
           ))}
@@ -103,6 +111,7 @@ useEffect(() => {
             <div className="player-avatar">
               {username.charAt(0).toUpperCase()}
             </div>
+
             <div>
               <strong>{username}</strong>
               <small>PLAYER ACCOUNT</small>
@@ -122,7 +131,9 @@ useEffect(() => {
 
         <header className="dashboard-topbar">
           <div>
-            <p className="dashboard-eyebrow">PLAYER CONTROL CENTER</p>
+            <p className="dashboard-eyebrow">
+              PLAYER CONTROL CENTER
+            </p>
             <h2>{activeTab}</h2>
           </div>
 
@@ -145,12 +156,19 @@ useEffect(() => {
               <>
                 <section className="dashboard-hero">
                   <div>
-                    <p className="dashboard-eyebrow">WELCOME BACK, PLAYER</p>
-                    <h1>Welcome to your <span>ARENA.</span></h1>
+                    <p className="dashboard-eyebrow">
+                      WELCOME BACK, PLAYER
+                    </p>
+
+                    <h1>
+                      Welcome to your <span>ARENA.</span>
+                    </h1>
+
                     <p>
                       Your competitive journey starts here.
                       Explore free tournaments and track your progress.
                     </p>
+
                     <button
                       className="dashboard-primary"
                       onClick={() => setActiveTab("Tournaments")}
@@ -158,12 +176,15 @@ useEffect(() => {
                       EXPLORE TOURNAMENTS ↗
                     </button>
                   </div>
+
                   <div className="hero-symbol">P</div>
                 </section>
 
                 <div className="dashboard-section-heading">
                   <div>
-                    <p className="dashboard-eyebrow">YOUR PERFORMANCE</p>
+                    <p className="dashboard-eyebrow">
+                      YOUR PERFORMANCE
+                    </p>
                     <h2>Player Statistics</h2>
                   </div>
                 </div>
@@ -171,19 +192,25 @@ useEffect(() => {
                 <section className="stats-grid">
                   <article className="stat-card">
                     <span>TOURNAMENTS JOINED</span>
-                    <strong>{profile?.tournamentsJoined ?? 0}</strong>
+                    <strong>
+                      {profile?.tournamentsJoined ?? 0}
+                    </strong>
                     <small>Your participation record</small>
                   </article>
 
                   <article className="stat-card">
                     <span>VERIFIED WINS</span>
-                    <strong>{profile?.verifiedWins ?? 0}</strong>
+                    <strong>
+                      {profile?.verifiedWins ?? 0}
+                    </strong>
                     <small>Admin-verified results</small>
                   </article>
 
                   <article className="stat-card">
                     <span>PLAYER STATUS</span>
-                    <strong className="status-active">ACTIVE</strong>
+                    <strong className="status-active">
+                      ACTIVE
+                    </strong>
                     <small>Account status</small>
                   </article>
                 </section>
@@ -192,10 +219,12 @@ useEffect(() => {
                   <article className="dashboard-panel">
                     <p className="dashboard-eyebrow">COMPETE</p>
                     <h3>Upcoming Tournaments</h3>
+
                     <p className="panel-description">
                       New community tournaments will appear here
                       when published by the admin.
                     </p>
+
                     <button
                       className="text-action"
                       onClick={() => setActiveTab("Tournaments")}
@@ -205,12 +234,17 @@ useEffect(() => {
                   </article>
 
                   <article className="dashboard-panel">
-                    <p className="dashboard-eyebrow">STAY UPDATED</p>
+                    <p className="dashboard-eyebrow">
+                      STAY UPDATED
+                    </p>
+
                     <h3>Latest Announcements</h3>
+
                     <p className="panel-description">
                       Tournament updates and important notices
                       will appear here.
                     </p>
+
                     <button
                       className="text-action"
                       onClick={() => setActiveTab("Announcements")}
@@ -220,32 +254,41 @@ useEffect(() => {
                   </article>
                 </section>
               </>
-            
-            
-) : activeTab === "Tournaments" ? (
-  <Tournaments user={user} />
-) : activeTab === "My Matches" ? (
-  <MatchRoom user={user} />
-) : activeTab === "Admin" && isAdmin ? (
-  <Admin user={user} />
-) : (
-  <section className="dashboard-panel section-placeholder">
+            ) : activeTab === "Tournaments" ? (
+              <Tournaments user={user} />
 
-                <p className="dashboard-eyebrow">PARTHIV ARENA FF</p>
+            ) : activeTab === "My Matches" ? (
+              <MatchRoom user={user} />
+
+            ) : activeTab === "Screenshot Wall" ? (
+              <ScreenshotWall user={user} />
+
+            ) : activeTab === "Admin" && isAdmin ? (
+              <Admin user={user} />
+
+            ) : (
+              <section className="dashboard-panel section-placeholder">
+
+                <p className="dashboard-eyebrow">
+                  PARTHIV ARENA FF
+                </p>
+
                 <h2>{activeTab}</h2>
+
                 <p className="panel-description">
                   This section is being prepared. Its features
                   will be connected in the upcoming development steps.
                 </p>
+
                 <button
                   className="dashboard-primary"
                   onClick={() => setActiveTab("Overview")}
                 >
                   BACK TO OVERVIEW
                 </button>
+
               </section>
             )}
-
 
           </div>
         )}
@@ -256,7 +299,9 @@ useEffect(() => {
         {["Overview", "Tournaments", "Leaderboard", "Settings"].map((item) => (
           <button
             key={item}
-            className={activeTab === item ? "mobile-nav-active" : ""}
+            className={
+              activeTab === item ? "mobile-nav-active" : ""
+            }
             onClick={() => setActiveTab(item)}
           >
             <span>
@@ -264,6 +309,7 @@ useEffect(() => {
                item === "Tournaments" ? "♜" :
                item === "Leaderboard" ? "♛" : "⚙"}
             </span>
+
             <small>{item}</small>
           </button>
         ))}
